@@ -15,5 +15,21 @@
 	<select id="selectBlogByTitle2" parameterType="string" resultType="Blog">
 		select * from Blog where title like "${value}"
 	</select>
+	
+	<select id="selectBlogOrderBySort" parameterType="string" resultType="Blog">
+		select * from Blog order by ${value}
+	</select>
+	
+	<select id="selectBlogByPage" resultType="Blog">
+		select * from Blog limit #{0},#{1}
+	</select>
+	
+	<select id="selectBlogByPage2" resultType="Blog">
+		select * from Blog limit #{offeset},#{pagesize}
+	</select>
+	
+	<select id="selectBlogByPage3" resultType="Blog">
+		select * from Blog limit #{offeset},#{pagesize}
+	</select>
 
 </mapper>
