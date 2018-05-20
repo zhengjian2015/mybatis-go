@@ -6,11 +6,16 @@ public class Blog {
 	private String title;
 	private int authorId;
 	private String state;
-	private Boolean featured;
+	private String featured;
 	private String style;
 	
 	public Blog() {
-		super();
+		super(); 
+		/*this.title = "Î´ÃüÃû";
+		this.authorId = 11;
+		this.state = "N";
+		this.featured = "2";
+		this.style = "red";*/
 	}
 	public Integer getId() {
 		return id;
@@ -36,10 +41,10 @@ public class Blog {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public Boolean getFeatured() {
+	public String getFeatured() {
 		return featured;
 	}
-	public void setFeatured(Boolean featured) {
+	public void setFeatured(String featured) {
 		this.featured = featured;
 	}
 	public String getStyle() {

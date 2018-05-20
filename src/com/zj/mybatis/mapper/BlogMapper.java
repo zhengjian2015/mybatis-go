@@ -23,4 +23,8 @@ public interface BlogMapper {
 			@Param(value="pagesize") int pagesize);
 	
 	List<Blog> selectBlogByPage3(Map<String,Object> map);
+	
+	int insertBlog(Blog blog);
+	
+	int updateBlog(Blog blog);
 }

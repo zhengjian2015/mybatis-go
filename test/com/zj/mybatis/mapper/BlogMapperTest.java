@@ -116,4 +116,39 @@ public class BlogMapperTest{
 		
 		System.out.println(blogList.toString());
 	}
+	
+	@Test
+	public void testinsertBlog() {
+		SqlSession session = MyBatisUtil.getSqlsession();
+		
+		BlogMapper blogMapper = session.getMapper(BlogMapper.class);
+		
+		Blog blog = new Blog();
+		int counts = blogMapper.insertBlog(blog);
+		
+		session.commit();
+		session.close();
+		
+		System.out.println(blog);
+		System.out.println("插入了"+counts);
+	}
+	
+	@Test
+	public void testupdateBlog() {
+		SqlSession session = MyBatisUtil.getSqlsession();
+		
+		BlogMapper blogMapper = session.getMapper(BlogMapper.class);
+		
+		//Blog blog = new Blog();
+		Blog blog = blogMapper.selectBlog(3);
+		blog.setId(3);
+		blog.setStyle("blue");
+		int counts = blogMapper.updateBlog(blog);
+		
+		session.commit();
+		session.close();
+		
+		System.out.println(blog);
+		System.out.println("修改了"+counts);
+	}
 } 

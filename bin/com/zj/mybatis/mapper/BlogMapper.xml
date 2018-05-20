@@ -31,5 +31,27 @@
 	<select id="selectBlogByPage3" resultType="Blog">
 		select * from Blog limit #{offeset},#{pagesize}
 	</select>
+	
+	<insert id="insertBlog" parameterType="Blog" useGeneratedKeys="true" keyProperty="id">
+		insert into Blog (title,authorId,state,featured,style)
+		values (#{title},#{authorId},#{state},#{featured},#{style})
+	</insert>
+	
+	<insert id="insertBlogOracle" parameterType="Blog">
+		<selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+			select seq.nextval as id from dual
+		</selectKey>
+		insert into Blog (title,authorId,state,featured,style)
+		values (#{title},#{authorId},#{state},#{featured},#{style})
+	</insert>
+	
+	<update id="updateBlog" parameterType="Blog">
+		update Blog set title = #{title},
+						authorId = #{authorId},
+						state = #{state},
+						featured =  #{featured},
+						style = #{style}
+				where id = #{id}
+	</update>
 
 </mapper>
