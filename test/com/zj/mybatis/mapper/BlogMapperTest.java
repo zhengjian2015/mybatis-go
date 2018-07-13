@@ -5,12 +5,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import com.zj.mybatis.pojo.Blog;
+import com.zj.mybatis.pojo.Category;
+import com.zj.mybatis.pojo.custom.CategoryCustom;
 import com.zj.mybatis.util.MyBatisUtil;
 
 public class BlogMapperTest{
+	
+	private static Logger logger = Logger.getLogger(BlogMapperTest.class);
 	
 	@Test
 	public void testSelectBlognoInterface() {
@@ -18,9 +23,10 @@ public class BlogMapperTest{
 			
 		Blog blog = (Blog)session.selectOne("com.zj.mybatis.mapper.BlogMapper.selectBlog",3);
 		
+		
 		session.close();
 		
-		System.out.println(blog.toString());
+		logger.debug(blog);
 	}
 	
 	@Test
@@ -29,11 +35,14 @@ public class BlogMapperTest{
 		
 		BlogMapper blogMapper = session.getMapper(BlogMapper.class);
 		
-		Blog blog = blogMapper.selectBlog(3);
+		Blog blog2 = blogMapper.selectBlog(3);
+		Blog blog3 = blogMapper.selectBlog(3);
 		
 		session.close();
 		
-		System.out.println(blog.toString());
+		logger.debug(blog2);
+		logger.debug("*****");
+		logger.debug(blog3);
 	}
 	
 	@Test
@@ -86,6 +95,20 @@ public class BlogMapperTest{
 		session.close();
 		
 		System.out.println(blogList.toString());
+	}
+	
+
+	@Test
+	public void testselectBlogByPage9() throws Exception {
+		SqlSession session = MyBatisUtil.getSqlsession();
+		
+		CategoryMapperCustom categoryMapperCustom = session.getMapper(CategoryMapperCustom.class);
+		
+		Category cl = categoryMapperCustom.getCategoryById(1, 1);
+		
+		session.close();
+		
+		System.out.println(cl);
 	}
 	
 	@Test
@@ -150,5 +173,21 @@ public class BlogMapperTest{
 		
 		System.out.println(blog);
 		System.out.println("ÐÞ¸ÄÁË"+counts);
+	}
+	
+	
+	@Test
+	public void testCallProc() {
+		SqlSession session = MyBatisUtil.getSqlsession();
+		
+		BlogMapper blogMapper = session.getMapper(BlogMapper.class);
+		
+		int a = blogMapper.callProcedure();
+		
+		session.close();
+		
+		logger.debug(a);
+		logger.debug("*****");
+
 	}
 } 

@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+
 import com.zj.mybatis.pojo.Blog;
+import com.zj.mybatis.pojo.custom.CategoryCustom;
 
 public interface BlogMapper {
 	Blog selectBlog(Integer id);
@@ -27,4 +29,8 @@ public interface BlogMapper {
 	int insertBlog(Blog blog);
 	
 	int updateBlog(Blog blog);
+	
+	int callProcedure();
+	
+	public CategoryCustom getCategoryById(@Param(value="status") Integer status,@Param(value="id")Integer id) throws Exception;
 }

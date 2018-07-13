@@ -53,5 +53,15 @@
 						style = #{style}
 				where id = #{id}
 	</update>
+	
+	<delete id="deleteBlogById" parameterType="int">
+		delete from blog where id=#{id}
+	</delete>
+	
+	
+	<!-- 定义存储过程 -->
+    <select id="callProcedure" statementType="CALLABLE" resultType="java.lang.Integer">
+      call select_blog()
+  	</select>
 
 </mapper>
