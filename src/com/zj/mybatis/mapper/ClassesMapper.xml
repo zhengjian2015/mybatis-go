@@ -7,6 +7,8 @@
 	<resultMap type="Classes" id="classesResultMap">
 		<id column="cid" property="id" jdbcType="INTEGER"></id>
 		<id column="cname" property="name" jdbcType="VARCHAR"></id>
+		<collection property="students" column="cid" javaType="ArrayList" ofType="Student" 
+		  select="com.zj.mybatis.mapper.StudentMapper.selectStudentByCid"></collection>
 	</resultMap>
 	
 	<select id="selectClassesById" parameterType="int" resultMap="classesResultMap">

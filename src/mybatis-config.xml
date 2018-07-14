@@ -12,6 +12,8 @@
 		<typeAlias type="com.zj.mybatis.pojo.Blog" alias="Blog"/>
 		<typeAlias type="com.zj.mybatis.pojo.Teacher" alias="Teacher"/>
 		<typeAlias type="com.zj.mybatis.pojo.Classes" alias="Classes"/>
+		<typeAlias type="com.zj.mybatis.pojo.Student" alias="Student"/>
+		<typeAlias type="com.zj.mybatis.pojo.vo.ClassesCustom" alias="ClassesCustom"/>
 		<!-- <package name="com.qfedu.mybatis.pojo"/> -->
 	</typeAliases>
 	
@@ -37,7 +39,9 @@
 	     <!-- // power by http://www.yiibai.com -->
 	     <mapper resource="com/zj/mybatis/mapper/BlogMapper.xml" />
 	     <mapper resource="com/zj/mybatis/mapper/TeacherMapper.xml" />
+	      <mapper resource="com/zj/mybatis/mapper/StudentMapper.xml" />
 	     <mapper resource="com/zj/mybatis/mapper/ClassesMapper.xml" />
+	     <mapper resource="com/zj/mybatis/mapper/ClassesMapperCustom.xml" />
 	     <mapper resource="com/zj/mybatis/mapper/CategoryMapperCustom.xml" />
 	</mappers>
 </configuration>

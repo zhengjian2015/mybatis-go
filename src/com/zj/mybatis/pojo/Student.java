@@ -1,14 +1,10 @@
 package com.zj.mybatis.pojo;
 
-import java.util.List;
-
-public class Classes {
+public class Student {
 	private Integer id;
 	private String name;
-	
-	private List<Student> students; 
-
-	public Classes() {
+	private Integer cid;
+	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -24,18 +20,16 @@ public class Classes {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public List<Student> getStudents() {
-		return students;
+	public Integer getCid() {
+		return cid;
 	}
-	public void setStudents(List<Student> students) {
-		this.students = students;
+	public void setCid(Integer cid) {
+		this.cid = cid;
 	}
 	@Override
 	public String toString() {
-		return "Classes [id=" + id + ", name=" + name + ", students=" + students + "]";
+		return "Student [id=" + id + ", name=" + name + ", cid=" + cid + "]";
 	}
-	
 	
 	
 }
