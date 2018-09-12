@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zj.mybatis.mapper.YsDwzcqkMapper">
+	<!--  statement  -->
+	<select id="selectYsDwzqks"  resultType="YsDwzqk">
+		select * from YS_DWZCQK
+	</select>
+	
+	
+	<insert id="insertYsDwzqkList">
+	   <foreach collection="lists" item="emp" separator=";">
+	  	 insert into YS_DWZCQK(DW_ID,INFORMATION,VALIDATION,INPUT_MAN)
+	   values(#{emp.dwid},#{emp.information},#{emp.validation},#{emp.inputMan})
+	   </foreach>
+	</insert>
+	
+	<insert id="insertYsDwzqkList2">
+	   <foreach collection="lists" item="emp" separator=";">
+	  	 insert into YS_DWJBQK(DW_ID,INFORMATION,VALIDATION,INPUT_MAN)
+	   values(#{emp.dwid},#{emp.information},#{emp.validation},#{emp.inputMan})
+	   </foreach>
+	</insert>
+	
+	<insert id="insertYsDwzqkList3">
+	   <foreach collection="lists" item="emp" separator=";">
+	  	 insert into YS_JBZCB(JB_ID,UNIT,UNIT_TYPE,ITEM_TYPE,ITEM_NAME,ZCCN_SUBCODE,ZCJJ_SUBCODE,ZF_JJFL,SF_CG,TOLAL_MONEY
+	  	 ,YS_MONEY,OTHER_MONEY,INPUT_MAN)
+	   values(#{emp.jbid},#{emp.unit},#{emp.unitType},#{emp.itemType},#{emp.itemName},#{emp.zccnSubcode},#{emp.zcjjSubcode},#{emp.zfJjfl},
+	   #{emp.sfCg},#{emp.totalMoney},#{emp.ysMoney},#{emp.otherMoney},#{emp.inputMan})
+	   </foreach>
+	</insert>
+	
+
+</mapper>

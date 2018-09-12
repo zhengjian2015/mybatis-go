@@ -7,5 +7,9 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/mybatis-3.2.7.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="lib" path="lib/sqljdbc4-4.0.jar"/>
+	<classpathentry kind="lib" path="lib/poi-ooxml-3.14.jar"/>
+	<classpathentry kind="lib" path="lib/poi-ooxml-schemas-3.14.jar"/>
+	<classpathentry kind="lib" path="lib/jxl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
