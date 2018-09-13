@@ -14,6 +14,8 @@ public class YsJbzcb {
 	private Float ysMoney;
 	private Float otherMoney;
 	private String inputMan;
+	
+	
 	public Integer getJbid() {
 		return jbid;
 	}
