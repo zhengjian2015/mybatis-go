@@ -68,7 +68,6 @@ public class ReadExcel {
                         	ys.setDwid(Integer.valueOf(dwid));
                         	//System.out.print(ys);
                         }
-                        
                         else if(j==2) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setValidation(dwe);
@@ -107,56 +106,43 @@ public class ReadExcel {
                     //List<YsDwzqk> innerList=new ArrayList<YsDwzqk>();
                 	YsJbzcb ys = new YsJbzcb();
                     // sheet.getColumns()返回该页的总列数
-                    for (int j = 0; j < sheet.getColumns(); j++) {
-                    	
+                    for (int j = 0; j < sheet.getColumns(); j++) {                    	
                         String cellinfo = sheet.getCell(j, i).getContents();
                         if(cellinfo.isEmpty()){
                             continue;
                         }
                         if(j==1) {
                         	String information = sheet.getCell(j, i).getContents();
-                        	//System.out.print(information);
                         	ys.setUnit(information);
-                        	//System.out.print(ys);
                         }
                         else if(j==0) {
                         	String dwid = sheet.getCell(j, i).getContents();
-                        	//System.out.print(information);
                         	ys.setJbid(Integer.valueOf(dwid));
-                        	//System.out.print(ys);
-                        }
-                        
+                        }                        
                         else if(j==2) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setUnitType(dwe);
-                        }
-                        
+                        }                        
                         else if(j==3) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setItemType(dwe);
-                        }
-                        
+                        }                        
                         else if(j==4) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setItemName(dwe);
-                        }
-                        
+                        }                        
                         else if(j==5) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setZccnSubcode(dwe);
-                        }
-                        
-                        
+                        } 
                         else if(j==6) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setZcjjSubcode(dwe);
                         }
-                        
                         else if(j==7) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setZfJjfl(dwe);
                         }
-                        
                         else if(j==8) {
                         	int x = 1;
                         	String dwe = sheet.getCell(j, i).getContents();
@@ -165,22 +151,18 @@ public class ReadExcel {
                         	}
                         	ys.setSfCg(x);
                         }
-                        
                         else if(j==9) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setTotalMoney(Float.valueOf(dwe));
                         }
-                        
                         else if(j==10) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setYsMoney(Float.valueOf(dwe));
                         }
-                        
                         else if(j==11) {
                         	String dwe = sheet.getCell(j, i).getContents();
                         	ys.setOtherMoney(Float.valueOf(dwe));
                         }
-    
                         ys.setInputMan("admin");
                     }
                     innerList.add(ys);

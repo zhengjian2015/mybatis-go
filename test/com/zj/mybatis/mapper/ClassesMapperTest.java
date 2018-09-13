@@ -1,30 +1,20 @@
 package com.zj.mybatis.mapper;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.junit.Test;
-
 import com.zj.mybatis.pojo.Classes;
-import com.zj.mybatis.pojo.Student;
-import com.zj.mybatis.pojo.Teacher;
 import com.zj.mybatis.util.MyBatisUtil;
 
-public class ClassesMapperTest {
+ public class ClassesMapperTest {
 	private static Logger logger = Logger.getLogger(ClassesMapperTest.class);
-
-	@Test
+	
+ 	@Test
 	public void testSelectClasses() {
 		SqlSession session = MyBatisUtil.getSqlsession();
-		
-		ClassesMapper classesMapper = session.getMapper(ClassesMapper.class);
-		
-		Classes classes = classesMapper.selectClassesById(1);
-		
-		session.close();
-		
-		logger.debug(classes);
+ 		ClassesMapper classesMapper = session.getMapper(ClassesMapper.class);
+ 		Classes classes = classesMapper.selectClassesById(1);
+ 		session.close();
+ 		logger.debug(classes);
 	}
-
-}
+ }

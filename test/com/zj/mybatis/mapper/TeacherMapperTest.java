@@ -16,26 +16,18 @@ public class TeacherMapperTest {
 	@Test
 	public void testSelectTeacher() {
 		SqlSession session = MyBatisUtil.getSqlsession();
-		
 		TeacherMapper teacherMapper = session.getMapper(TeacherMapper.class);
-		
 		Teacher teacher = teacherMapper.selectTeacherById(1);
-		
 		session.close();
-		
 		logger.debug(teacher);
 	}
 	
 	@Test
 	public void testSelectTeachers() {
 		SqlSession session = MyBatisUtil.getSqlsession();
-		
 		TeacherMapper teacherMapper = session.getMapper(TeacherMapper.class);
-		
 		List<Teacher> teachers = teacherMapper.selectTeachers();
-		
 		session.close();
-		
 		logger.debug(teachers);
 	}
 }

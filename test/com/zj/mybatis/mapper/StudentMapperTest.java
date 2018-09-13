@@ -16,13 +16,9 @@ public class StudentMapperTest {
 	@Test
 	public void testSelectTeachers() {
 		SqlSession session = MyBatisUtil.getSqlsession();
-		
 		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
-		
 		List<Student> students = studentMapper.selectStudentByCid(1);
-		
 		session.close();
-		
 		logger.debug(students);
 	}
 
