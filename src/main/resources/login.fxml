@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--https://blog.csdn.net/theonegis/article/details/50184811?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.compare&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.compare-->
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" fx:controller="com.example.demo.controller.LoginController" xmlns:fx="javafx">
+<children>
+    <Button fx:id="someButton" layoutX="318.0" layoutY="210.0" mnemonicParsing="false" text="登录" />
+    <Label layoutX="136.0" layoutY="104.0" text="用户名：" />
+    <Label layoutX="136.0" layoutY="162.0" text="密 码：" />
+    <TextField layoutX="212.0" layoutY="100.0" />
+    <PasswordField layoutX="212.0" layoutY="158.0" />
+</children>
+</Pane>

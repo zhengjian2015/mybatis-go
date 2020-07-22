@@ -34,7 +34,8 @@ public class DemoApplication extends Application{
 
 	private Parent createRoot() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader();
-		fxmlLoader.setLocation(DemoApplication.class.getResource("/main.fxml"));
+		//fxmlLoader.setLocation(DemoApplication.class.getResource("/main.fxml"));
+		fxmlLoader.setLocation(DemoApplication.class.getResource("/login.fxml"));
 		//这里就用到了springboot
 		fxmlLoader.setControllerFactory(applicationContext::getBean);
 		return fxmlLoader.load();
