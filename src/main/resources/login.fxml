@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" fx:controller="com.example.demo.controller.LoginController" xmlns:fx="javafx">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" fx:controller="com.example.demo.controller.LoginController" stylesheets="@main.css" xmlns:fx="javafx">
 <children>
     <Button fx:id="someButton" layoutX="318.0" layoutY="210.0" mnemonicParsing="false" text="登录" />
     <Label layoutX="136.0" layoutY="104.0" text="用户名：" />
