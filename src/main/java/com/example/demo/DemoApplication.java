@@ -5,14 +5,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import javax.security.auth.login.Configuration;
 import java.io.IOException;
 
+/**
+ * javafx 下载路径：
+ * https://www.oracle.com/java/technologies/javafxscenebuilder-1x-archive-downloads.html
+ *
+ * javafx 安装教程
+ * https://blog.csdn.net/corleone_4ever/article/details/104461476?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare
+ *
+ *
+ *
+ *
+ */
 @SpringBootApplication
 public class DemoApplication extends Application{
 
@@ -26,10 +35,11 @@ public class DemoApplication extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Hello JavaFx and SpringBoot");
-		primaryStage.setWidth(500);
-		primaryStage.setHeight(500);
+		//primaryStage.setWidth(680);
+		//primaryStage.setHeight(450);
 		primaryStage.setScene(new Scene(createRoot()));
 		primaryStage.show();
+
 	}
 
 	private Parent createRoot() throws IOException {
