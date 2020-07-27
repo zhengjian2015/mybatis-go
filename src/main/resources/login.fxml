@@ -3,19 +3,29 @@
 <!--https://blog.csdn.net/theonegis/article/details/50184811?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.compare&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.compare-->
 
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="670.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.LoginController">
 <children>
     <Button fx:id="someButton" layoutX="350.0" layoutY="259.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="290.0" text="登录" />
-    <TextField fx:id="txtAccount" layoutX="350.0" layoutY="100.0" prefHeight="42.0" prefWidth="290.0" promptText="请输入用户名" />
+    <TextField fx:id="txtAccount" layoutX="350.0" layoutY="100.0" prefHeight="42.0" prefWidth="290.0" promptText="请输入用户名"/>
     <PasswordField fx:id="passwordField" layoutX="350.0" layoutY="160.0" prefHeight="42.0" prefWidth="290.0" promptText="请输入密码" />
       <Label layoutX="350.0" layoutY="51.0" prefHeight="23.0" prefWidth="133.0" text="账号和密码登录">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
+    <TextField fx:id="tfTitle"  promptText="Enter Title Here">
+        <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+        </VBox.margin>
+    </TextField>
+    <!--
+    <VBox spacing="10">
+        <Label text="Base64编码:" />
+        <TextArea VBox.vgrow="ALWAYS" fx:id="txtBase64" wrapText="true" prefHeight="42.0" prefWidth="290.0"/>
+    </VBox>-->
 </children>
 </Pane>

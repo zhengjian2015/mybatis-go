@@ -37,3 +37,11 @@
     -fx-background-color:#EAECEE;
 
 }
+
+#txtAccount{
+    -fx-background-image:url('relationship.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+    -fx-background-size: 20% 60%;/*按比例缩放*/
+    -fx-padding: 15 15 15 55;
+}
