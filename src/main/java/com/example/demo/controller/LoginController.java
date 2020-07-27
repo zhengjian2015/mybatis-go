@@ -2,9 +2,14 @@ package com.example.demo.controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * https://www.it1352.com/548089.html
@@ -16,23 +21,47 @@ import org.springframework.stereotype.Component;
  * https://blog.csdn.net/pengpeng2395/article/details/7920968
  *
  * https://blog.csdn.net/cdc_csdn/article/details/80710001
+ *
+ * map马上初始化
+ * https://www.cnblogs.com/exmyth/p/8110942.html
+ *
  */
 @Component
 public class LoginController {
     public Button someButton;
+
+    public TextField txtAccount;
+    public PasswordField passwordField;
+
+    private Map<String, String >  users = new HashMap<String, String>(){{
+        put("bob", "bob123");
+        put("alice", "alice123");
+        put("tom", "tomcat");
+    }};
 
     public void initialize() {
         this.someButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 System.out.println("点击次数 :" + event.getClickCount());
                 if (event.getButton().name().equals(MouseButton.PRIMARY.name())) {
-                    System.out.println("左键 ");
+                    login();
                 }
                 if (event.getButton().name().equals(MouseButton.SECONDARY.name())) {
                     System.out.println("右键 ");
                 }
                 if (event.getButton().name().equals(MouseButton.MIDDLE.name())) {
                     System.out.println("滑轮键按下 ");
+                }
+            }
+
+            private void login() {
+                System.out.println(txtAccount.getText());
+                System.out.println(passwordField.getText());
+                String expectedPassword = users.get(txtAccount.getText().toLowerCase());
+                if (expectedPassword != null && expectedPassword.equals(passwordField.getText())) {
+                    System.out.println("密码正确");
+                } else {
+                    System.out.println("密码错误");
                 }
             }
         });
