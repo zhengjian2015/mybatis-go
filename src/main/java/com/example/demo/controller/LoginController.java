@@ -2,11 +2,13 @@ package com.example.demo.controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +35,8 @@ public class LoginController {
     public TextField txtAccount;
     public PasswordField passwordField;
 
+    public Label labelAlert;
+
     private Map<String, String >  users = new HashMap<String, String>(){{
         put("bob", "bob123");
         put("alice", "alice123");
@@ -53,17 +57,31 @@ public class LoginController {
                     System.out.println("滑轮键按下 ");
                 }
             }
-
-            private void login() {
-                System.out.println(txtAccount.getText());
-                System.out.println(passwordField.getText());
-                String expectedPassword = users.get(txtAccount.getText().toLowerCase());
-                if (expectedPassword != null && expectedPassword.equals(passwordField.getText())) {
-                    System.out.println("密码正确");
-                } else {
-                    System.out.println("密码错误");
-                }
-            }
         });
+    }
+
+
+    private void login() {
+        System.out.println(txtAccount.getText());
+        System.out.println(passwordField.getText());
+        String expectedPassword = users.get(txtAccount.getText().toLowerCase());
+        if(StringUtils.isEmpty(txtAccount.getText())) {
+            labelAlert.setVisible(true);
+            return;
+        } else {
+            labelAlert.setVisible(false);
+        }
+        if(StringUtils.isEmpty(passwordField.getText())) {
+            labelAlert.setText("请输入密码");
+            labelAlert.setVisible(true);
+            return;
+        } else {
+            labelAlert.setVisible(false);
+        }
+        if (expectedPassword != null && expectedPassword.equals(passwordField.getText())) {
+            System.out.println("密码正确");
+        } else {
+            System.out.println("密码错误");
+        }
     }
 }
