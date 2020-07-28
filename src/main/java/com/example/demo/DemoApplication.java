@@ -37,6 +37,7 @@ public class DemoApplication extends Application{
 		primaryStage.setTitle("Hello JavaFx and SpringBoot");
 		//primaryStage.setWidth(680);
 		//primaryStage.setHeight(450);
+		primaryStage.resizableProperty().setValue(Boolean.FALSE);
 		primaryStage.setScene(new Scene(createRoot()));
 		primaryStage.show();
 

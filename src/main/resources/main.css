@@ -5,7 +5,7 @@
 /**设置Label样式**/
 .label {
     -fx-font-size: 16px;
-    -fx-font-weight: bold;
+    -fx-font-weight: normal;
     -fx-text-fill: #333333;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
@@ -41,7 +41,7 @@
 #txtAccount{
     -fx-background-image:url('relationship.png');
     -fx-background-repeat: no-repeat;
-    -fx-background-position: left center;
-    -fx-background-size: 20% 60%;/*按比例缩放*/
+    -fx-background-position: left 10 center;
+    -fx-background-size: 10% 50%;/*按比例缩放*/
     -fx-padding: 15 15 15 55;
 }
