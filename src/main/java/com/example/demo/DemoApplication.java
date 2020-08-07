@@ -34,7 +34,8 @@ public class DemoApplication extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		primaryStage.setTitle("Hello JavaFx and SpringBoot");
+
+		primaryStage.setTitle("登录");
 		//primaryStage.setWidth(680);
 		//primaryStage.setHeight(450);
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);

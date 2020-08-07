@@ -50,8 +50,31 @@
     -fx-background-image:url('lock.png');
     -fx-background-repeat: no-repeat;
     -fx-background-position: left 10 center;
-    -fx-background-size: 10% 50%;/*按比例缩放*/
+    -fx-background-size: 10% 40%;/*按比例缩放*/
     -fx-padding: 15 15 15 45;
+}
+
+#phone{
+    -fx-background-image:url('phone.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left 10 center;
+    -fx-background-size: 7% 40%;/*按比例缩放*/
+    -fx-padding: 15 15 15 45;
+}
+
+#smsCode{
+    -fx-background-image:url('message.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left 10 center;
+    -fx-background-size: 12% 50%;/*按比例缩放*/
+    -fx-padding: 15 15 15 45;
+}
+
+#codeBtn{
+    -fx-font-size:12px;
+    -fx-text-fill: #00BFFF;
+    -fx-background-color: white;
+    -fx-border-color: #00BFFF;
 }
 
 #labelAlert {
