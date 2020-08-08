@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.DemoApplication;
 import com.example.demo.MainStage;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -13,31 +13,31 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 /**
  * https://www.it1352.com/548089.html
- *
+ * <p>
  * http://www.itkeyword.com/doc/9122387463444846703/ui-javafx
- *
- *
+ * <p>
+ * <p>
  * javascript
  * https://blog.csdn.net/pengpeng2395/article/details/7920968
- *
+ * <p>
  * https://blog.csdn.net/cdc_csdn/article/details/80710001
- *
+ * <p>
  * map马上初始化
  * https://www.cnblogs.com/exmyth/p/8110942.html
- *
  */
 @Component
 public class LoginController {
+
+    private static int tmp = 60;
 
     public Button someButton;
 
@@ -57,16 +57,21 @@ public class LoginController {
 
     public Pane rootPane;
 
+    private static Timeline animation;
 
-    private DemoApplication application;
+    private String showString = "";
 
-    private Map<String, String >  users = new HashMap<String, String>(){{
+
+    public Button timeBtn;
+
+    private Map<String, String> users = new HashMap<String, String>() {{
         put("bob", "bob123");
         put("alice", "alice123");
         put("tom", "tomcat");
     }};
 
     public void initialize() {
+
         this.someButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 System.out.println("点击次数 :" + event.getClickCount());
@@ -94,6 +99,47 @@ public class LoginController {
                 }
             }
         });
+
+        //点击倒计时按钮
+        this.codeBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton().name().equals(MouseButton.PRIMARY.name())) {
+                    System.out.println("点击了倒计时");
+                    //验证手机格式
+                    if (StringUtils.isEmpty(phone.getText())) {
+                        labelAlert.setText("请输入手机号");
+                        labelAlert.setVisible(true);
+                        return;
+                    }
+                    new Thread(() ->{
+                        timeBtn.setVisible(true);
+                        codeBtn.setVisible(false);
+                        animation = new Timeline(new KeyFrame(Duration.millis(1000), e -> timelabel()));
+                        animation.setCycleCount(Timeline.INDEFINITE);
+                        animation.play();
+                    }).start();
+
+                }
+            }
+        });
+
+    }
+
+
+    private void timelabel() {
+        System.out.println("---"+tmp);
+        tmp--;
+        showString = tmp + "秒后重发";
+        timeBtn.setText(showString);
+        if(tmp <= 0) {
+            codeBtn.setVisible(true);
+            timeBtn.setVisible(false);
+            animation.stop();
+            tmp = 60;
+            showString = tmp + "秒后重发";
+            timeBtn.setText(showString);
+        }
     }
 
 
@@ -101,13 +147,13 @@ public class LoginController {
         System.out.println(txtAccount.getText());
         System.out.println(passwordField.getText());
         String expectedPassword = users.get(txtAccount.getText().toLowerCase());
-        if(StringUtils.isEmpty(txtAccount.getText())) {
+        if (StringUtils.isEmpty(txtAccount.getText())) {
             labelAlert.setVisible(true);
             return;
         } else {
             labelAlert.setVisible(false);
         }
-        if(StringUtils.isEmpty(passwordField.getText())) {
+        if (StringUtils.isEmpty(passwordField.getText())) {
             labelAlert.setText("请输入密码");
             labelAlert.setVisible(true);
             return;
@@ -117,7 +163,7 @@ public class LoginController {
         if (expectedPassword != null && expectedPassword.equals(passwordField.getText())) {
             System.out.println("密码正确");
             //跳转新窗口
-            MainStage open  = new MainStage();
+            MainStage open = new MainStage();
             try {
                 open.start(new Stage());
                 //关闭主窗口

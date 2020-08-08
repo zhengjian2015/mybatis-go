@@ -3,8 +3,6 @@
 <!--https://blog.csdn.net/theonegis/article/details/50184811?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.compare&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.compare-->
 
 <?import javafx.scene.*?>
-<?import javafx.scene.paint.*?>
-<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -31,6 +29,7 @@
     <TextField fx:id="phone" layoutX="350.0" layoutY="128.0" prefHeight="41.0" prefWidth="291.0" promptText="请输入手机号" visible="false" />
     <TextField fx:id="smsCode" layoutX="350.0" layoutY="188.0" prefHeight="41.0" prefWidth="151.0" promptText="请输入动态密码" visible="false" />
     <Button fx:id="codeBtn" layoutX="525.0" layoutY="188.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="115.0" text="获取动态密码" visible="false" />
+    <Button fx:id="timeBtn" layoutX="525.0" layoutY="188.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="115.0" text="60秒后重发" visible="false" />
 
     <Label fx:id="labelAlert" layoutX="350.0" layoutY="107.0" text="⚇请输入用户名" visible="false" />
 </children>
