@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.MainStage;
+import com.example.demo.entities.LoginMsg;
+import com.example.demo.service.LoginService;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -14,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -64,6 +67,10 @@ public class LoginController {
 
     public Button timeBtn;
 
+
+    @Autowired
+    private LoginService loginService;
+
     private Map<String, String> users = new HashMap<String, String>() {{
         put("bob", "bob123");
         put("alice", "alice123");
@@ -112,13 +119,15 @@ public class LoginController {
                         labelAlert.setVisible(true);
                         return;
                     }
-                    new Thread(() ->{
-                        timeBtn.setVisible(true);
-                        codeBtn.setVisible(false);
-                        animation = new Timeline(new KeyFrame(Duration.millis(1000), e -> timelabel()));
-                        animation.setCycleCount(Timeline.INDEFINITE);
-                        animation.play();
-                    }).start();
+
+                    timeBtn.setVisible(true);
+                    codeBtn.setVisible(false);
+                    animation = new Timeline(new KeyFrame(Duration.millis(1000), e -> timelabel()));
+                    animation.setCycleCount(Timeline.INDEFINITE);
+                    animation.play();
+                    LoginMsg loginMsg = new LoginMsg();
+                    loginMsg.setPhone(phone.getText());
+                    loginService.login(loginMsg);
 
                 }
             }
