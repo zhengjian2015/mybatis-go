@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.MainStage;
 import com.example.demo.entities.LoginMsg;
 import com.example.demo.service.LoginService;
+import com.example.demo.util.CommonUtil;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -116,6 +117,11 @@ public class LoginController {
                     //验证手机格式
                     if (StringUtils.isEmpty(phone.getText())) {
                         labelAlert.setText("请输入手机号");
+                        labelAlert.setVisible(true);
+                        return;
+                    }
+                    if(!CommonUtil.isMobileNO(phone.getText())) {
+                        labelAlert.setText("请输入正确手机号");
                         labelAlert.setVisible(true);
                         return;
                     }
