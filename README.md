@@ -25,3 +25,24 @@ cp /home/jian/redis-6.0.6/redirs.conf  kconfig/
 redis-server kconfig/redis.conf
 
 redis-cli -p 6379
+
+
+
+**常用命令**
+
+```
+set age 11  #key为age value为11
+
+keys *
+
+EXIST age 
+
+move age 1  (1表示当前数据库，移除)
+
+EXPIRE age 10  #10s中后过期
+
+ttl age  #查看剩余时间
+
+type age #查看age的类型
+```
+
