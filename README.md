@@ -394,3 +394,48 @@ QUEUED
 4) "v2"
 ```
 
+## 乐观锁
+
+悲观锁：很悲观，认为无论做什么都会出错，每一次都要加锁
+
+乐观锁：很乐观，认为大概率不会出错，cas compare and swap,mysql加个version来比较
+
+redis里的watch就是乐观锁
+
+```
+127.0.0.1:6379> watch money
+OK
+127.0.0.1:6379> set money 100
+OK
+127.0.0.1:6379> set out 0
+OK
+127.0.0.1:6379> multi
+OK
+127.0.0.1:6379> DECRBY money 2
+QUEUED
+127.0.0.1:6379> INCRBY out 2
+QUEUED
+127.0.0.1:6379> exec
+(nil)
+127.0.0.1:6379> 
+#此时用另一个线程，再起一个rediscli,改变money的值，就是nil
+再操作一遍就成功了， unwatch再执行money操作
+
+127.0.0.1:6379> UNWATCH
+OK
+127.0.0.1:6379> WATCH money
+OK
+127.0.0.1:6379> MULTI
+OK
+127.0.0.1:6379> DECRBY money 5
+QUEUED
+127.0.0.1:6379> INCRBY out 5
+QUEUED
+127.0.0.1:6379> exec
+1) (integer) 990
+2) (integer) 10
+127.0.0.1:6379> 
+
+
+```
+
