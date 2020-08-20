@@ -1,12 +1,10 @@
 # redis的安装
 
-**redis是单线程的**	
+**redis是单线程的**
 
 redis是基于内存的，cpu不是它的性能瓶颈，redis的瓶颈是根据机器的内存和网络带宽，既然可以用单线程就用单线程
 
 6.0 以后貌似已经用多线程了
-
-
 
 cd redis-6.0.8
 
@@ -14,17 +12,21 @@ make
 
 cd src
 
-make install 
+make install
 
 redis的默认安装是 /usr/local/bin
 
 再bin目录下 mkdir kconfig
 
-cp /home/jian/redis-6.0.6/redirs.conf  kconfig/
+cp /home/jian/redis-6.0.6/redirs.conf kconfig/
 
 redis-server kconfig/redis.conf
 
 redis-cli -p 6379
+
+```
+远程无法访问的问题： [https://blog.csdn.net/weixin_43388789/article/details/94190750?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~first_rank_v2~rank_v25-1-94190750.nonecase&utm_term=centos%E7%AB%AF%E5%8F%A36379%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE](https://blog.csdn.net/weixin_43388789/article/details/94190750?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~first_rank_v2~rank_v25-1-94190750.nonecase&utm_term=centos端口6379无法访问)
+```
 
 
 
@@ -47,10 +49,6 @@ type age #查看age的类型
 
 select 0 选择数据库0  默认有16个数据库 默认是0
 ```
-
-
-
-
 
 # 常用类型
 
@@ -116,11 +114,7 @@ getset db redis 如果不存在的值则返回nil
 get db
 getset db mongdb
 get db
-
-
 ```
-
-
 
 ## list
 
@@ -158,8 +152,6 @@ exists list #判断list是否存在
 lset list 0 abc  #如果存在就更新
 
 linsert list brfore abc  rfg #在abc之前插入rfg
-
-
 ```
 
 ## set
@@ -209,7 +201,6 @@ smove myset myset2 "hello" #把指定的一个值移动到另一个set集合中
 4) "b"
 5) "f"
 127.0.0.1:6379> 
-
 ```
 
 ## hash
@@ -238,8 +229,6 @@ hincrby myhash field1 #增加
 hsetnx myhash fileld1 eee #如果不存在则设置 如果存在则不能设置 可以用来分布式锁 
 ```
 
-
-
 ## zset
 
 在set的基础上增加了一个值 set k1 v1 zset k1 score v1
@@ -259,9 +248,6 @@ zrange myzset 0 -1  #获取全部
 (integer) 1
 
 ZRANGEBYSCORE ages -inf +inf #从小大大排列 负无穷到正无穷
-
-
-
 ```
 
 # 三种特殊的数据类型
@@ -281,11 +267,9 @@ geoadd china:city 120.16 30.24 hangzhou
 georadius china:city 110 30 500 km
 
 georadius china:city 110 30 500 km withdist #显示到中心位置的距离
-
-
 ```
 
-## Hyperloglog	
+## Hyperloglog
 
 什么是基数 ？两个数组中不重复的元素
 
@@ -293,17 +277,13 @@ georadius china:city 110 30 500 km withdist #显示到中心位置的距离
 
 优点占用内存小
 
-
-
 ## Bitmaps
 
-位存储 只有 0 1 
+位存储 只有 0 1
 
 可以用来签到
 
 setbit
-
-
 
 # 事务
 
@@ -315,8 +295,6 @@ Redis事务的本质:一组命令的集合！ 一个事务中的所有命令都�
 
 -----队列 set set set 队列--------
 
-
-
 Redis单条命令保存原子性，但是事务不保证原子性
 
 redis的事务
@@ -325,11 +303,9 @@ redis的事务
 
 命令入队
 
-执行事务  (exec)
+执行事务 (exec)
 
-正常执行事务	
-
-
+正常执行事务
 
 ```
 127.0.0.1:6379> multi
@@ -354,7 +330,7 @@ QUEUED
 
 ## 两种异常情况：
 
-1.编译型异常  事务中所有命令都不执行
+1.编译型异常 事务中所有命令都不执行
 
 ```
 127.0.0.1:6379> multi
@@ -435,7 +411,52 @@ QUEUED
 1) (integer) 990
 2) (integer) 10
 127.0.0.1:6379> 
-
-
 ```
 
+# springBoot整合
+
+在springBoot2.x后，原来的jredis被替换为了letture
+
+jedis：采用直连，多个线程操作的话，是不安全的，使用jredis pool连接池 更像BIO
+
+lettuce:采用netty,实例可以再多个线程中进行共享，不存在线程不安全的情况，可以减少线程数据了 更像NIO
+
+整合测试下
+
+1.D:\maven-repository\org\springframework\boot\spring-boot-autoconfigure\2.3.2.RELEASE\spring-boot-autoconfigure-2.3.2.RELEASE.jar!\META-INF\spring.factories
+
+2.找到redis的auto
+
+3.RedisAutoConfiguration
+
+4.再看注解进入RedisProperties.class
+
+源码分析
+
+```java
+@Bean
+@ConditionalOnMissingBean(name = "redisTemplate") //可以自己设置一个redisTemplate
+public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory)
+      throws UnknownHostException {
+    //redis的对象都需要序列化 -  c            https://blog.csdn.net/weixin_30298497/article/details/97903700 
+    //Object需要强转
+   RedisTemplate<Object, Object> template = new RedisTemplate<>();
+   template.setConnectionFactory(redisConnectionFactory);
+   return template;
+}
+
+@Bean
+@ConditionalOnMissingBean  //由于string是最常用的，单独拎出来一个
+public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory)
+      throws UnknownHostException {
+   StringRedisTemplate template = new StringRedisTemplate();
+   template.setConnectionFactory(redisConnectionFactory);
+   return template;
+}
+```
+
+配置时配jedis已经无效了，没有注入成功
+
+廖雪峰的教程发现是 去掉了redsitemplate,直接自己封装 生菜
+
+https://www.jianshu.com/p/ec42f149e2a5
